@@ -1,7 +1,7 @@
 
 import { Outlet } from 'react-router-dom'
 import Header from '../src/Components/Header/Header'
-import Footer from './Components/Footer/footer'
+import Footer from './Components/Footer/Footer'
 import { useDispatch } from 'react-redux'
 import { useState ,useEffect} from 'react'
 import authservice from './Backend/appwrite/auth'
