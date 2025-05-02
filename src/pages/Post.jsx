@@ -16,7 +16,7 @@ useEffect(  ()=>{
   if (slug) {
     appwriteService.getPost(slug).then((post) => {
       if (post) {
-        console.log(post)
+        
         setPost(post)
       }else {
         navigate("/")
@@ -41,7 +41,7 @@ const deletePost = async()=>{
 useEffect(() => {
   if (post && post.featuredImage) {
     const imageUrl = appwriteBucket.getPreview(post.featuredImage);
-    console.log("Image URL:", imageUrl);
+    
   }
 }, [post]);
 

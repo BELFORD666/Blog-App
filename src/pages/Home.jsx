@@ -15,7 +15,7 @@ const Home = () => {
       }
     })
   }, [])
-  if(posts.length===0) return  <p className="text-center w-full text-gray-500 text-lg">No posts found.</p>
+  if(posts.length===0) return  <p className="text-center w-full text-gray-500 text-lg">You must be logged in to see the posts</p>
   return (
     <div className='w-full py-8'>
     <Container>

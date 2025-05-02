@@ -51,7 +51,7 @@ class BucketService{
   }
   getPreview(fileId) {
     try {
-      const url = this.storage.getFilePreview(config.appwriteBucketId, fileId);
+      const url = this.storage.getFileView(config.appwriteBucketId, fileId);
      
       return url;
     } catch (error) {

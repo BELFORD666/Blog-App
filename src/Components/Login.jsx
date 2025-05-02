@@ -13,24 +13,26 @@ const Login = () => {
             const dispatch = useDispatch()
             const[error,setError] = useState()
             const navigate = useNavigate()
-            const id = useSelector((auth)=>auth.auth.user)
+           
+            const[loading,setLoading] = useState(false);
 
        const login = async (data)=>{
         setError("")
         try{
 
+            setLoading(true);
             const session = await authservice.login(data);
             if(session){
                 const user =await authservice.getUser()
                 
                 if(user){
                     dispatch(authLogin({user}))
-                    console.log(id)
                     navigate("/")
                 }
             }
         }
         catch(error){
+            setLoading(false)
             setError(error.message);
         }
        }
@@ -72,7 +74,7 @@ const Login = () => {
                             {...register("password", { required: true })}
                         />
                         <Button type="submit" className="w-full">
-                            Sign in{" "}
+                           {loading===true ? "Loading": "Login"}
                         </Button>
                     </div>
                 </form>
