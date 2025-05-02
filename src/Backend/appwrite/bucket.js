@@ -4,7 +4,7 @@ import { Client, Storage,ID } from "appwrite";
 class BucketService{
 
     client = new Client()
-        .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
+        .setEndpoint('https://fra.cloud.appwrite.io/v1') // Your API Endpoint
         .setProject(config.appwriteProjectId); // Your project ID
     
   storage = new Storage(this.client);

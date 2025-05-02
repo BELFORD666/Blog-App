@@ -3,7 +3,7 @@ import { Client, Account ,ID} from "appwrite";
 class AuthService{
 
     client = new Client()
-        .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
+        .setEndpoint('https://fra.cloud.appwrite.io/v1') // Your API Endpoint
         .setProject(config.appwriteProjectId); // Your project ID
     
     account = new Account(this.client);

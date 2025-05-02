@@ -3,7 +3,7 @@ import { Client, Databases ,Query} from "appwrite";
 
 class DatabaseService {
     client = new Client()
-        .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
+        .setEndpoint('https://fra.cloud.appwrite.io/v1') // Your API Endpoint
         .setProject(config.appwriteProjectId); // Your project ID
     
      databases = new Databases(this.client);
