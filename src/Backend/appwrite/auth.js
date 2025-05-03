@@ -3,7 +3,7 @@ import { Client, Account ,ID} from "appwrite";
 class AuthService{
 
     client = new Client()
-        .setEndpoint('https://fra.cloud.appwrite.io/v1') // Your API Endpoint
+        .setEndpoint('https://cloud.appwrite.io/v1') // Your API Endpoint
         .setProject(config.appwriteProjectId); // Your project ID
     
     account = new Account(this.client);
@@ -21,9 +21,16 @@ class AuthService{
     }
     async login({email,password}){
         try{
-
-            const promise =  await this.account.createEmailPasswordSession(email, password);
-            if(promise) return promise
+            console.log("Logging in...");
+            const session = await this.account.createEmailPasswordSession(email, password);
+             console.log("Session created:", session);
+             const jwtResponse = await this.account.createJWT();
+             console.log("JWT created:", jwtResponse);
+             console.log(jwtResponse);
+            //  await this.account.deleteSession("current");
+            //  console.log("Session deleted");
+             this.client.setJWT(jwtResponse.jwt);
+             return jwtResponse;
         }
 
         catch (error) {

@@ -15,7 +15,7 @@ const PostCard = ({
             <div  className='w-full justify-center mb-4'>
                 
           <img src={bucketService.getPreview(featuredImage)} alt={title}  className='rounded-xl' />
-        <h2 lassName='text-xl font-bold'> 
+        <h2 className='text-xl font-bold'> 
             {title}
         </h2>
             </div>
