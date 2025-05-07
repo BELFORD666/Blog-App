@@ -1,5 +1,5 @@
 
-import React,{useCallback} from "react";
+import React,{useCallback, useState} from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -9,9 +9,10 @@ import RTE from '../RTE'
 import Button from '../Button'
 import appwrite from '../../Backend/appwrite/bucket'
 import appwritedatabase from '../../Backend/appwrite/database'
-import { useParams } from "react-router-dom";
+
 
 export  default function PostForm ({post}){
+     const [loading,setLoading] = useState(false);
    
     const {register, handleSubmit, control,getValues,setValue, watch, formState: { errors },reset} = useForm({
         defaultValues: {
@@ -56,7 +57,7 @@ export  default function PostForm ({post}){
    
     const submit = async (data)=>{
         if(post){
-              
+              setLoading(true);
                 const file = data.image[0] ? await appwrite.createFile(data.image[0]) : null
                 if(file){
                     await appwrite.deleteFile(post.featuredImage)
@@ -70,10 +71,11 @@ export  default function PostForm ({post}){
                 if (dbPost){
                     navigate(`/post/${dbPost.$id}`)
                 }
-
+            setLoading(false)
             
             }
         else{
+            setLoading(true)
            const  file = await appwrite.createFile(data.image[0])
             if(file){
                 const fileId = file.$id
@@ -88,6 +90,7 @@ export  default function PostForm ({post}){
                 }
 
             }
+            setLoading(false)
         }}
       return (
         <form  className="flex flex-wrap"
@@ -156,7 +159,12 @@ export  default function PostForm ({post}){
             bgColor={post ? "bg-green-500": undefined}
                 className="w-full"
             >
-        {post ? "update": "submit"}
+       {post ? (
+    loading ? "Loading..." : "Update"
+) : (
+    loading ? "Loading..." : "Submit"
+)}
+
             </Button>
             </div>
             {errors.root && <p className="text-red-600 mt-8 text-center">{errors.root.message}</p>}
